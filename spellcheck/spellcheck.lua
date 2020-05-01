@@ -27,10 +27,7 @@ local function run_spellcheck(lang)
   local wordlist = words[lang]
   for k,_ in pairs(wordlist) do
     keys[#keys + 1] = k
-    io.write(k)
-    io.write("\n")
   end
-  io.write("--------")
   local inp = table.concat(keys, '\n')
   local outp = pandoc.pipe('aspell', {'list','-l',lang}, inp)
   for w in string.gmatch(outp, "([%a’]+)\n") do
